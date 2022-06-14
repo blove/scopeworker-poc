@@ -1,0 +1,437 @@
+@import '@ag-grid-community/core/dist/styles/ag-grid';
+@import '@ag-grid-community/core/dist/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin';
+
+:root {
+  --color-50: '#e4eefc';
+  --color-100: '#bbd5f8';
+  --color-200: '#8db9f4';
+  --color-300: '#5f9def';
+  --color-400: '#3d88eb';
+  --color-500: '#1b73e8';
+  --color-600: '#186be5';
+  --color-700: '#1460e2';
+  --color-800: '#1056de';
+  --color-900: '#0843d8';
+  --color-A100: '#fff';
+  --color-A200: '#cfdaff';
+  --color-A400: '#9cb3ff';
+  --color-A700: '#829fff';
+
+  --color-black-12: rgba(0, 0, 0, 0.12);
+  --color-black-38: rgba(0, 0, 0, 0.38);
+  --color-black-87: rgba(0, 0, 0, 0.87);
+  --color-black-54: rgba(0, 0, 0, 0.54);
+  --color-black-87: rgba(0, 0, 0, 0.87);
+
+  --color-error: #db0028;
+  --color-error-container: #fff5f5;
+
+  --color-background-50: '#737373';
+  --color-background-100: '#666666';
+  --color-background-200: '#595959';
+  --color-background-300: '#4d4d4d';
+  --color-background-400: '#404040';
+  --color-background-500: '#333';
+  --color-background-600: '#262626';
+  --color-background-700: '#1a1a1a';
+  --color-background-800: '#0d0d0d';
+  --color-background-900: '#000000';
+  --color-background-A100: '#808080';
+  --color-background-A200: '#8c8c8c';
+  --color-background-A400: '#999999';
+  --color-background-A700: '#000000';
+
+  --color-background-gray: #f5f5f5;
+  --color-background-white: #fff;
+  --color-background-black-4: rgba(0, 0, 0, 0.04);
+  --color-range-selection: rgba(25, 115, 232, 0.06);
+  --color-background-red-light: #ffebef;
+  --color-background-red: #f1402c;
+  --color-background-popup: #f8f9fa;
+  --color-border: #e0e0e0;
+  --color-background-tooltip: #212121;
+
+  --space-content: 8px;
+  --header-height: 48px;
+  --horizontal-scroll-height: 12px;
+  --top-sticky-panel-height: 100px;
+  --subpage-header-panel: 50px;
+  --footer-height: 64px;
+  --mat-dialog-content-max-height: 65vh;
+}
+
+$scopeworker-theme: (
+  // foreground
+  foreground-color: rgba(0, 0, 0, 0.87),
+  header-foreground-color: ag-derived(foreground-color),
+  secondary-foreground-color: ag-derived(foreground-color),
+  disabled-foreground-color: var(--color-background-500),
+  // background
+  background-color: #fff,
+  header-background-color: #f5f5f5,
+  odd-row-background-color: ag-derived(background-color),
+  row-hover-color: var(--color-background-black-4),
+  // border
+  border-color: #e0e0e0,
+  secondary-border-color: var(--color-background-300),
+  cell-horizontal-border: solid ag-derived(border-color),
+  row-border-color: ag-derived(border-color),
+  // size
+  grid-size: 12px,
+  row-height: ag-derived(grid-size, $times: 2),
+  header-height: 32px,
+  cell-horizontal-padding: 4px,
+  cell-vertical-padding: 12px,
+  // resize
+  header-column-resize-handle: true,
+  header-column-resize-handle-width: 2px,
+  // checkbox
+  checkbox-background-color: null,
+  // range
+  // @todo: check why this color doesn t apply with var
+  range-selection-border-color: #8db9f4,
+  range-selection-background-color: var(--color-range-selection),
+  range-selection-background-color-1: var(--color-range-selection),
+  range-selection-background-color-2: var(--color-range-selection),
+  range-selection-background-color-3: var(--color-range-selection),
+  range-selection-background-color-4: var(--color-range-selection),
+  selected-row-background-color: var(--color-range-selection),
+  // font
+  font-family: (Roboto, 'Helvetica Neue', sans-serif),
+  font-size: 12px,
+  // card
+  card-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3),
+  // popup
+  popup-shadow: ag-derived(card-shadow)
+);
+
+.ag-theme-material {
+  @include ag-theme-alpine($scopeworker-theme);
+  flex: 1 auto;
+
+  .ag-popup {
+    flex-grow: 0;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input {
+    /* Firefox */
+    -moz-appearance: textfield;
+    padding-left: calc(var(--space-content) / 2) !important;
+  }
+
+  .ag-root {
+    .ag-body-horizontal-scroll {
+      height: var(--horizontal-scroll-height) !important;
+      min-height: var(--horizontal-scroll-height) !important;
+      max-height: var(--horizontal-scroll-height) !important;
+
+      .ag-horizontal-left-spacer {
+        visibility: hidden;
+      }
+      // @todo: Discuss with Brian, this class is causing unnecessary horizontal scroll
+      .ag-scroller-corner {
+        // width: var(--space-content) !important;
+        // min-width: var(--space-content) !important;
+        // max-width: var(--space-content) !important;
+      }
+
+      .ag-body-horizontal-scroll-viewport {
+        height: var(--horizontal-scroll-height) !important;
+        min-height: var(--horizontal-scroll-height) !important;
+        max-height: var(--horizontal-scroll-height) !important;
+      }
+    }
+  }
+
+  .ag-root-wrapper {
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
+  }
+
+  .ag-header,
+  .ag-header-row {
+    line-height: calc(var(--space-content) * 2);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .ag-header-cell:hover {
+    background: linear-gradient(
+        0deg,
+        var(--color-background-black-4),
+        var(--color-background-black-4)
+      ),
+      #f5f5f5;
+  }
+
+  .mat-icon.custom-cell-with-icon {
+    line-height: 16px;
+  }
+
+  .custom-cell-with-icon {
+    font-family: 'Material Icons';
+    color: var(--color-black-54);
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  .custom-cell-with-icon:hover {
+    color: var(--color-black-87);
+  }
+
+  .custom-cell-with-icon:hover::before {
+    content: '';
+    display: block;
+    width: calc(var(--space-content) * 3);
+    height: calc(var(--space-content) * 3);
+    top: -4px;
+    left: -4px;
+    border-radius: 50%;
+    position: absolute;
+    background: var(--color-background-black-4);
+  }
+
+  .visible-on-hover {
+    display: none;
+  }
+  .ag-center-aligned-header {
+    .ag-header-cell-label {
+      justify-content: center;
+    }
+  }
+
+  .ag-center-aligned-cell {
+    text-align: center;
+  }
+
+  .align-center {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    #eValue {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .align-center .ag-header-cell-label {
+    display: flex;
+    justify-content: center;
+  }
+
+  .ag-right-aligned-header .ag-header-cell-label {
+    justify-content: end;
+    flex-direction: inherit;
+  }
+
+  .ag-header-cell {
+    &[aria-sort='ascending'],
+    &[aria-sort='descending'] {
+      background: var(--color-background-200);
+    }
+  }
+
+  .ag-header-cell,
+  .ag-header-group-cel {
+    padding: 0 calc(var(--space-content) / 2);
+    word-spacing: 2px;
+  }
+
+  .ag-cell-focus,
+  .ag-cell-range-selected {
+    background: linear-gradient(
+        0deg,
+        rgba(25, 115, 232, 0.07),
+        rgba(25, 115, 232, 0.07)
+      ),
+      #ffffff;
+  }
+
+  .ag-cell {
+    color: rgba(0, 0, 0, 0.87);
+    &.radio-button::after {
+      content: 'radio_button_unchecked';
+      font-family: 'Material Icons';
+      text-transform: none;
+      margin: 0 auto;
+    }
+
+    &.radio-button.disabled::after {
+      color: var(--color-black-12);
+    }
+  }
+
+  .ag-row-selected {
+    .ag-cell {
+      &.radio-button::after {
+        content: 'radio_button_checked';
+      }
+    }
+  }
+
+  .ag-cell:hover {
+    .visible-on-hover {
+      display: block;
+    }
+  }
+
+  .ag-body-viewport {
+    overflow-y: auto;
+  }
+
+  .disabled-cell {
+    background-color: var(--color-background-gray);
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .disabled-cell.ag-cell-focus {
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .sw-grid-errored-cell {
+    background-color: var(--color-background-red-light) !important;
+  }
+
+  .sw-grid-errored-cell::after {
+    content: 'arrow_drop_up';
+    font-family: 'Material Icons';
+    transform: rotateZ(45deg);
+    position: absolute;
+    font-size: 24px;
+    top: -9px;
+    right: -9px !important;
+    color: var(--color-background-red) !important;
+  }
+}
+
+.circled-cell-with-color {
+  &::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    display: block;
+    border-radius: 50%;
+    margin: 6px auto 0;
+  }
+}
+
+.circled-cell-with-color {
+  &.circle-color-amber::after {
+    background: #ff9800;
+  }
+
+  &.circle-color-green::after {
+    background: #4caf50;
+  }
+
+  &.circle-color-red::after {
+    background: #db0028;
+  }
+
+  &.circle-color-grey::after {
+    background: var(--color-black-12);
+  }
+}
+
+$offset: 187;
+$duration: 1.4s;
+
+.spinner {
+  animation: rotator $duration linear infinite;
+  width: 14px;
+  height: 14px;
+}
+
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+.path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: dash $duration ease-in-out infinite,
+    colors ($duration * 4) ease-in-out infinite;
+}
+
+@keyframes colors {
+  0% {
+    stroke: #1973e8;
+  }
+  25% {
+    stroke: #1973e8;
+  }
+  50% {
+    stroke: #1973e8;
+  }
+  75% {
+    stroke: #1973e8;
+  }
+  100% {
+    stroke: #1973e8;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: $offset;
+  }
+  50% {
+    stroke-dashoffset: calc($offset/4);
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: $offset;
+    transform: rotate(450deg);
+  }
+}
+
+.cost-renderer-container {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: 100%;
+  #calculate-price {
+    color: #1973e8;
+    cursor: pointer;
+  }
+}
+
+.ag-tooltip.ag-popup-child {
+  background: #fff;
+  box-shadow: 0 2px 2.62px rgb(0 0 0 / 23%) !important;
+  font-family: (Roboto, 'Helvetica Neue', sans-serif);
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 12px;
+  max-width: 360px;
+}
+
+.overlay-no-rows {
+  color: var(--color-black-54);
+  font-size: 14px;
+}
+
+.ignore-overflow-ellipsis {
+  word-break: break-all !important;
+  white-space: normal !important;
+}
